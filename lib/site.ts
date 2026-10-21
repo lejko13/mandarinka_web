@@ -1,7 +1,7 @@
 /** Údaje o aktuálnej verzii – pri novom vydaní stačí zmeniť tu. */
 export const release = {
   version: "0.2.0",
-  date: "okt\u00f3ber 2026",
+  date: "október 2026",
   sizeMB: 43,
   file: "Mandarinka-0.2.0.dmg",
   sha256: "1f98d9a106dcbd3ef01b1c0e40b638ce133fa92851af44e71b8456169020a9b8",
