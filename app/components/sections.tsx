@@ -38,7 +38,7 @@ export function Hero() {
   return (
     <section className="grid items-center gap-10 pt-5 pb-16 md:grid-cols-[1.05fr_1fr] md:pt-12">
       <div>
-        <Badge>Prvá verzia · {release.version}</Badge>
+        <Badge>Verzia {release.version}</Badge>
         <h1 className="mt-4.5 mb-5 text-[clamp(42px,6vw,68px)] leading-[1.04] font-bold tracking-tight">
           Ťahaj súbor.
           <br />
@@ -177,7 +177,8 @@ export function Privacy() {
           <h2 className="mb-2 text-[28px] font-bold tracking-tight">Všetko offline, priamo na tvojom Macu</h2>
           <p className="text-cream/60">
             Mandarinka neposiela tvoje fotky ani dokumenty nikam na internet. AI zväčšenie, odstránenie pozadia aj
-            hľadanie tvárí bežia na čipe tvojho Macu. Žiadne účty, žiadne servery, žiadne sledovanie.
+            hľadanie tvárí bežia na čipe tvojho Macu. Žiadne účty, žiadne sledovanie. Na internet sa pripojí len
+            raz denne, aby zistila, či je nová verzia – a to sa dá v nastaveniach vypnúť.
           </p>
         </div>
       </div>
@@ -227,8 +228,8 @@ export function Install() {
         ))}
       </ol>
       <p className="mt-4.5 max-w-[760px] text-[15px] text-cream/60">
-        Prečo to upozornenie? Ide o prvú verziu, ktorá ešte nie je overená (notarizovaná) cez Apple. Overenie príde
-        v ďalšej verzii – potom sa aplikácia otvorí bez otázok.
+        Prečo to upozornenie? Mandarinka zatiaľ nie je overená (notarizovaná) cez Apple. Potvrdiť to treba len pri
+        prvej inštalácii – aktualizácie sa už nainštalujú bez otázok.
       </p>
     </Section>
   );
@@ -252,20 +253,12 @@ export function Release() {
           <Badge>
             Verzia {release.version} · {release.date}
           </Badge>
-          <h3 className="mt-3 mb-1.5 text-[22px] font-bold">Prvá verzia</h3>
+          <h3 className="mt-3 mb-1.5 text-[22px] font-bold">Čo je nové</h3>
           <p className="text-cream/60">
-            Toto je úplne prvé vydanie Mandarinky. Všetko podstatné funguje, ale môžeš naraziť na drobnosti. Ak niečo
-            nejde, alebo máš nápad, daj vedieť.
+            Mandarinka sa sama aktualizuje – keď vyjde nová verzia, aplikácia ju ponúkne nainštalovať jedným klikom.
+            Ak niečo nejde, alebo máš nápad, daj vedieť.
           </p>
-          <Bullets
-            items={[
-              "Kruhové menu cez ťahanie + Shift",
-              "Prevody obrázkov, PDF a dokumentov",
-              "AI zväčšenie, bez pozadia, vystrihnutie",
-              "Editory: orezať, rozmazať, pozadie, upraviť text",
-              "Okno „Uložiť ako“ s výberom priečinka",
-            ]}
-          />
+          <Bullets items={release.changes} />
         </div>
         <div className="card p-6">
           <h3 className="mb-1.5 text-[22px] font-bold">Na čo myslieť</h3>
@@ -275,6 +268,7 @@ export function Release() {
               "AI zväčšenie je pre fotky do 2048 px – väčšie sa zväčšia rýchlo 2×.",
               "AI vystrihnutie a „Bez pozadia“ potrebujú macOS 14 Sonoma a novší.",
               "WebP sa ponúkne len vtedy, ak ho tvoj macOS vie zapísať.",
+              "Verzia 0.1.0 sa sama neaktualizuje – ak ju máš, stiahni si novú verziu raz ručne.",
               "Verzia pre Windows je v pláne.",
             ]}
           />
@@ -286,7 +280,14 @@ export function Release() {
 
 export function Faq() {
   const items: [string, React.ReactNode][] = [
-    ["Posiela Mandarinka moje súbory na internet?", "Nie. Všetky úpravy aj AI funkcie bežia priamo na tvojom Macu. Internet nepotrebuje."],
+    [
+      "Posiela Mandarinka moje súbory na internet?",
+      "Nie. Všetky úpravy aj AI funkcie bežia priamo na tvojom Macu. Jediné pripojenie je kontrola aktualizácií raz denne na tento web – nič pri nej neposiela a v nastaveniach sa dá vypnúť.",
+    ],
+    [
+      "Ako dostanem novú verziu?",
+      "Automaticky. Mandarinka sa raz denne (a pri spustení) pozrie, či nie je nová verzia, a ponúkne ju nainštalovať jedným klikom. Kedykoľvek môžeš dať v menu „Skontrolovať aktualizácie…“. Aktualizácie sú podpísané, takže podvrhnutú verziu by aplikácia odmietla.",
+    ],
     [
       "Prepíše mi pôvodný súbor?",
       "Nie. Výsledok sa vždy uloží ako nový súbor (napríklad „Foto rozmazané.jpg“). Pri editoroch si môžeš vybrať názov aj priečinok a pri rovnakom názve sa rozhodneš, či ponechať oba, alebo nahradiť.",
@@ -369,7 +370,11 @@ export function Footer() {
         <a className={link} href="https://github.com/KhronosGroup/MoltenVK">
           MoltenVK
         </a>{" "}
-        (Apache-2.0).{" "}
+        (Apache-2.0). Aktualizácie zabezpečuje{" "}
+        <a className={link} href="https://sparkle-project.org">
+          Sparkle
+        </a>{" "}
+        (MIT).{" "}
         <a className={link} href={asset("/licencie.txt")}>
           Celé licencie
         </a>

@@ -1,11 +1,12 @@
 /** Údaje o aktuálnej verzii – pri novom vydaní stačí zmeniť tu. */
 export const release = {
-  version: "0.1.0",
-  date: "október 2026",
-  sizeMB: 42,
-  file: "Mandarinka-0.1.0.dmg",
-  sha256: "641da8821e284a7cb5c0789271bacd24c618d3b68f8cd3c0ddba2b9f4206a673",
+  version: "0.2.0",
+  date: "okt\u00f3ber 2026",
+  sizeMB: 43,
+  file: "Mandarinka-0.2.0.dmg",
+  sha256: "1f98d9a106dcbd3ef01b1c0e40b638ce133fa92851af44e71b8456169020a9b8",
   minMacOS: "macOS 13 Ventura",
+  changes: ["Automatické aktualizácie – nové verzie sa ponúknu samé", "Približovanie fotky v editoroch (trackpad, ⌘+ / ⌘−)", "Rozmazané oblasti sa dajú posúvať, zväčšovať aj otáčať", "Okno „Uložiť ako“ s výberom priečinka", "Nový vzhľad aplikácie a kruhového menu", "Pri viacerých súboroch naraz sa ukáže upozornenie"],
 };
 
 /** Cesta k súboru v public/. */
