@@ -1,16 +1,13 @@
 # Mandarinka – web
 
-Stránka na stiahnutie aplikácie Mandarinka pre macOS. **Next.js 16 + Tailwind CSS 4**, exportovaná
-ako statický web pre GitHub Pages.
-
-Web: https://lejko13.github.io/mandarinka_web/
+Stránka na stiahnutie aplikácie Mandarinka pre macOS. **Next.js 16 + Tailwind CSS 4**, beží na **Verceli**.
 
 ## Vývoj
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm run build      # statický web do out/
+npm run build      # produkčný build
 ```
 
 ## Štruktúra
@@ -24,13 +21,11 @@ lib/site.ts                   verzia, veľkosť, názov .dmg, SHA-256
 assets/                       obrázky (ikona, kruhové menu, ukážky okien)
 public/download/              Mandarinka-<verzia>.dmg na stiahnutie
 public/licencie.txt           licencie pribaleného softvéru (Real-ESRGAN, ncnn, MoltenVK)
-.github/workflows/deploy.yml  build a zverejnenie na GitHub Pages pri každom push na main
 ```
 
 ## Zverejnenie
 
-Pri každom `git push` na `main` GitHub Actions web postaví a zverejní.
-Raz treba v repozitári zapnúť **Settings → Pages → Source: GitHub Actions**.
+Repozitár je prepojený s Vercelom – každý `git push` na `main` web automaticky postaví a zverejní.
 
 ## Nová verzia aplikácie
 

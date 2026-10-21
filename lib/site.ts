@@ -8,9 +8,7 @@ export const release = {
   minMacOS: "macOS 13 Ventura",
 };
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-/** Cesta k súboru v public/ (s prefixom repozitára na GitHub Pages). */
-export const asset = (path: string) => `${basePath}${path}`;
+/** Cesta k súboru v public/. */
+export const asset = (path: string) => path;
 
 export const downloadUrl = asset(`/download/${release.file}`);
