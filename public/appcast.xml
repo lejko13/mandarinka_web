@@ -5,13 +5,13 @@
     <link>https://mandarinka-web.vercel.app</link>
     <language>sk</language>
     <item>
-      <title>Mandarinka 0.2.0</title>
-      <pubDate>Wed, 21 Oct 2026 13:10:42 +0200</pubDate>
-      <sparkle:version>3</sparkle:version>
-      <sparkle:shortVersionString>0.2.0</sparkle:shortVersionString>
-      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-      <description><![CDATA[<h2>Čo je nové</h2><ul><li>Automatické aktualizácie – nové verzie sa ponúknu samé</li><li>Približovanie fotky v editoroch (trackpad, ⌘+ / ⌘−)</li><li>Rozmazané oblasti sa dajú posúvať, zväčšovať aj otáčať</li><li>Okno „Uložiť ako“ s výberom priečinka</li><li>Nový vzhľad aplikácie a kruhového menu</li><li>Pri viacerých súboroch naraz sa ukáže upozornenie</li></ul>]]></description>
-      <enclosure url="https://mandarinka-web.vercel.app/download/Mandarinka-0.2.0.dmg" length="42612431" type="application/octet-stream" sparkle:edSignature="yzGGT3wfgfHfogBf22EDns3osMMGLazUWq46/gznwzxidbiSAQBZCVqaMxItMrVardx+dhw4U0oworqwANqDBQ=="/>
+      <title>Mandarinka 0.3.0</title>
+      <pubDate>Thu, 22 Oct 2026 22:45:38 +0200</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>0.3.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.3</sparkle:minimumSystemVersion>
+      <description><![CDATA[<h2>Čo je nové</h2><ul><li>AI titulky do videa – štýly, poloha, otáčanie, ⌘Z a vypálenie do videa</li><li>Vodoznaky – tvoje logo alebo text na fotky aj videá</li><li>Úprava PDF vrátane naskenovaných (rozpoznanie textu so slovenským slovníkom)</li><li>7 jazykov aplikácie a vlastná farba</li><li>Metadáta aj pri videu, vystrihovanie lasom a ďalšie vylepšenia</li></ul>]]></description>
+      <enclosure url="https://mandarinka-web.vercel.app/download/Mandarinka-0.3.0.dmg" length="49796674" type="application/octet-stream" sparkle:edSignature="TH66sIoY8jnNleHl63EKCEm71OSKNJwOp7oJkmgrVgSbMniOQ/gUufs42CCxuZ61RlI79lVigbNZ6TWhjjrnAQ=="/>
     </item>
   </channel>
 </rss>
