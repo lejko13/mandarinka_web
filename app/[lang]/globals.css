@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* Rovnaký dizajn ako prezentácia Mandarinky: čierne pozadie, oranžová žiara, sklenené okná, výrazné nadpisy. */
+@theme {
+  --color-ink: #000;
+  --color-panel: #121010;
+  --color-cream: #f6f1ec;
+  --color-hot: #ff9a52;
+  --color-hot-top: #ff9c4a;
+  --color-hot-deep: #f0602a;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", var(--font-inter), "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes float {
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Oranžový gradient (tlačidlá, štítky, krúžky). */
+@utility bg-hot {
+  background-image: linear-gradient(180deg, var(--color-hot-top), var(--color-hot-deep));
+}
+
+@utility text-hot-gradient {
+  background-image: linear-gradient(180deg, #ffb066, var(--color-hot-deep));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Karta ako v prezentácii: jemne svetlejšia výplň a tenký svetlý okraj. */
+@utility card {
+  border-radius: 18px;
+  background: linear-gradient(rgb(255 255 255 / 0.075), rgb(255 255 255 / 0.035));
+  box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 0.13);
+}
+
+/* „Slajd“ – veľký panel sekcie: čierny s oranžovou žiarou v rohoch a jemným okrajom. */
+@utility slide {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background:
+    radial-gradient(620px 300px at 12% -10%, rgb(255 128 48 / 0.16), transparent 70%),
+    radial-gradient(520px 320px at 100% 115%, rgb(255 90 40 / 0.08), transparent 70%),
+    #050404;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.07),
+    0 30px 80px rgb(0 0 0 / 0.5);
+}
+
+/* Okno aplikácie na slajde – tenký svetlý okraj a hlboký tieň ako sklo v prezentácii. */
+@utility win {
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 0.5px rgb(255 255 255 / 0.22),
+    0 24px 60px rgb(0 0 0 / 0.65);
+}
+
+/* Malý nadpis nad nadpisom („AKO TO FUNGUJE“). */
+@utility eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-hot);
+}
+
+/* Bodka pred odrážkou. */
+@utility dot-list {
+  & > li {
+    position: relative;
+    padding-left: 20px;
+  }
+  & > li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 0.62em;
+    width: 7px;
+    height: 7px;
+    border-radius: 99px;
+    background: #ff7a2f;
+  }
+}
+
+/* Otvorená otázka: + sa otočí na ×. */
+details[open] > summary .plus {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

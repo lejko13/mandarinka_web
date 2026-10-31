@@ -13,15 +13,23 @@ npm run build      # produkčný build
 ## Štruktúra
 
 ```
-app/page.tsx                  poskladanie stránky
-app/components/sections.tsx   sekcie (úvod, ako to funguje, funkcie, ukážky, inštalácia, otázky…)
-app/components/ui.tsx         tlačidlo na stiahnutie, odznak, sekcia, číslo kroku
-app/globals.css               farby a pomôcky v Tailwinde (rovnaké ako aplikácia)
+app/[lang]/page.tsx           poskladanie stránky (jeden jazyk)
+app/[lang]/layout.tsx         <html lang>, titulok a popis pre vyhľadávače v danom jazyku
+app/[lang]/globals.css        dizajn ako prezentácia (čierna, oranžová žiara, sklenené okná)
+app/components/sections.tsx   sekcie (úvod, funkcie podľa kategórií, súkromie, inštalácia, otázky…)
+app/components/wheel.tsx      interaktívne kruhové menu (hover, druh súboru)
+app/components/language.tsx   výber jazyka v hlavičke (ako v aplikácii)
+app/components/visuals.tsx    ukážky metadát, zvuku a obrázkov z PDF
+app/components/ui.tsx         tlačidlá, štítky, nadpisy, Rich (**tučné**, {slot})
+dictionaries/sk.ts            všetky texty – slovenčina je zdroj, typ Dict
+dictionaries/<jazyk>.ts       preklady (cs, pl, de, en, hu, uk, it, fr, es) – rovnaká štruktúra
+lib/i18n.ts                   zoznam jazykov, vlajky, adresy (sk na „/“, ostatné /en, /cs…)
 lib/site.ts                   verzia, veľkosť, názov .dmg, SHA-256
-assets/                       obrázky (ikona, kruhové menu, ukážky okien)
+assets/okna/                  snímky okien (fotky CC0, vymyslené dokumenty)
 public/download/              Mandarinka-<verzia>.dmg na stiahnutie
-public/licencie.txt           licencie pribaleného softvéru (Real-ESRGAN, ncnn, MoltenVK)
 ```
+
+Nový text: pridaj ho do `dictionaries/sk.ts` a do všetkých ostatných jazykov (TypeScript ohlási chýbajúci kľúč).
 
 ## Zverejnenie
 
@@ -35,5 +43,5 @@ V priečinku aplikácie (`~/systemy/mandarinka`):
 ./build.sh && OUT_DIR=../madarinka_web/public/download ./Scripts/make_dmg.sh 0.2.0
 ```
 
-Potom v `lib/site.ts` zmeň `version`, `file`, `sizeMB` a `sha256` (skript ich vypíše),
+Potom v `lib/site.ts` zmeň `version`, `file`, `sizeMB` a `sha256` (skript ich vypíše), v slovníkoch `release`,
 zmaž starý `.dmg` z `public/download/` a pushni.

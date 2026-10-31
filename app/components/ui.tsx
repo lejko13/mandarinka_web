@@ -7,11 +7,23 @@ export function DownloadButton({ small = false, children }: { small?: boolean; c
     <a
       href={downloadUrl}
       download
-      className={`bg-hot inline-flex items-center gap-2.5 rounded-full border border-white/25 font-bold text-white transition hover:-translate-y-px active:scale-[0.98] ${
+      className={`bg-hot inline-flex items-center gap-2.5 rounded-full font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.35)] transition hover:-translate-y-px active:scale-[0.98] ${
         small
-          ? "px-4.5 py-2 text-[15px] shadow-[0_4px_16px_rgb(247_84_33/0.3)]"
-          : "px-6.5 py-3.5 text-[17px] shadow-[0_8px_28px_rgb(247_84_33/0.38)] hover:shadow-[0_12px_34px_rgb(247_84_33/0.55)]"
+          ? "px-4.5 py-2 text-[14.5px] shadow-[0_4px_16px_rgb(240_96_42/0.35)]"
+          : "px-7 py-3.5 text-[17px] shadow-[0_10px_30px_rgb(240_96_42/0.4)] hover:shadow-[0_14px_38px_rgb(240_96_42/0.55)]"
       }`}
+    >
+      {children}
+    </a>
+  );
+}
+
+/** Sivé tlačidlo s obrysom (druhá akcia). */
+export function GhostButton({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="inline-flex items-center gap-2 rounded-full bg-white/8 px-6 py-3.5 text-[17px] font-bold text-cream shadow-[inset_0_0_0_1px_rgb(255_255_255/0.14)] transition hover:bg-white/12"
     >
       {children}
     </a>
@@ -29,32 +41,39 @@ export function AppleLogo() {
   );
 }
 
-export function Badge({ children }: { children: ReactNode }) {
+/** Kapsula: oranžová (štítok nad nadpisom slajdu) alebo sivá (vlastnosti). */
+export function Pill({ on = false, children }: { on?: boolean; children: ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-hot-deep/15 px-3 py-1 text-[13px] font-bold tracking-wide text-hot">
+    <span
+      className={`inline-block w-fit self-start rounded-full px-3 py-1 font-extrabold ${
+        on
+          ? "bg-hot text-[11px] tracking-[0.14em] text-white uppercase"
+          : "bg-white/8 text-[12.5px] text-cream/85 shadow-[inset_0_0_0_0.5px_rgb(255_255_255/0.14)]"
+      }`}
+    >
       {children}
     </span>
   );
 }
 
-/** Sekcia s nadpisom a podnadpisom. */
-export function Section({
-  id,
+/** Nadpis sekcie: malý oranžový nadpis, veľký nadpis a voliteľný úvod. */
+export function Heading({
+  eyebrow,
   title,
-  subtitle,
-  children,
+  lead,
+  center = false,
 }: {
-  id?: string;
-  title?: string;
-  subtitle?: string;
-  children: ReactNode;
+  eyebrow: string;
+  title: ReactNode;
+  lead?: ReactNode;
+  center?: boolean;
 }) {
   return (
-    <section id={id} className="scroll-mt-6 py-14">
-      {title && <h2 className="mb-2 text-[clamp(30px,4vw,40px)] font-bold tracking-tight">{title}</h2>}
-      {subtitle && <p className="mb-8 max-w-[40em] text-cream/60">{subtitle}</p>}
-      {children}
-    </section>
+    <div className={`mb-10 ${center ? "mx-auto max-w-[760px] text-center" : "max-w-[760px]"}`}>
+      <div className="eyebrow mb-3">{eyebrow}</div>
+      <h2 className="text-[clamp(32px,4.6vw,52px)] leading-[1.05] font-extrabold tracking-[-0.035em]">{title}</h2>
+      {lead && <p className="mt-4 text-[18px] leading-relaxed text-cream/60">{lead}</p>}
+    </div>
   );
 }
 
@@ -62,11 +81,30 @@ export function Section({
 export function Num({ n, size = "lg" }: { n: number; size?: "lg" | "sm" }) {
   return (
     <span
-      className={`bg-hot grid shrink-0 place-items-center rounded-full font-extrabold shadow-[0_6px_18px_rgb(247_84_33/0.45)] ${
-        size === "lg" ? "h-11.5 w-11.5 text-xl" : "h-7.5 w-7.5 text-[15px]"
+      className={`bg-hot grid shrink-0 place-items-center rounded-full font-extrabold text-white shadow-[0_6px_16px_rgb(255_110_40/0.35)] ${
+        size === "lg" ? "h-10 w-10 text-[17px]" : "h-7.5 w-7.5 text-[14px]"
       }`}
     >
       {n}
     </span>
+  );
+}
+
+/** Dosadí hodnoty do textu: fill("Verzia {version}", { version: "1.0" }). */
+export function fill(text: string, values: Record<string, string>) {
+  return text.replace(/\{(\w+)\}/g, (all, key: string) => values[key] ?? all);
+}
+
+/** Text zo slovníka: **tučné** a {slot} nahradené prvkom (napr. kláves, odkaz). */
+export function Rich({ text, slots = {} }: { text: string; slots?: Record<string, ReactNode> }) {
+  return (
+    <>
+      {text.split(/(\*\*[^*]+\*\*|\{\w+\})/g).map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) return <b key={i}>{part.slice(2, -2)}</b>;
+        const slot = /^\{(\w+)\}$/.exec(part)?.[1];
+        if (slot && slot in slots) return <span key={i}>{slots[slot]}</span>;
+        return part;
+      })}
+    </>
   );
 }
